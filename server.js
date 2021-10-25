@@ -12,11 +12,11 @@ const connection = require("./config/database.config");
 connection.database();
 
 app.get("/", (req, res) => {
-    res.json({ Welcome: "Welcome to the Book Store App !" });
-  });
+  res.json({ Welcome: "Welcome to the Book Store App !" });
+});
+require("./routes/user.route")(app);
+app.listen(PORT, () => {
+  console.log(`Server is running at port no ${PORT}`);
+});
 
-  app.listen(PORT, () => {
-    console.log(`Server is running at port no ${PORT}`);
-  });
-
-  module.exports = app;
+module.exports = app;
