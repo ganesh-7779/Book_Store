@@ -1,0 +1,55 @@
+{
+    "registration": {
+        "user": {
+            "firstName":"Gordon Osinski",
+            "lastName":"Stracke",
+            "email":"ganeshgavhad9@gmail.com",
+            "password": "GaneshG@9"
+        },
+        
+        "withoutEmail":{
+            "firstName": "Akash",
+            "lastName": "Pawar",
+            "password": "akashG@12"
+        },
+        "WrongEmail":{
+            "firstName": "Akash",
+            "lastName": "Pawar",
+            "email": "ganeshgavhad2gmail.com",
+            "password": "akashG@12"
+        },
+        "withoutFn":{
+            "lastName": "Pawar",
+            "email": "ganeshgavhad2@gmail.com",
+            "password": "akashG@12"
+        },
+        "withoutLn":{
+            "firstName": "Akash",
+            "email": "ganeshgavhad2@gmail.com",
+            "password": "akashG@12"
+        },
+        "withoutPass":{
+            "firstName": "Akash",
+            "lastName": "Pawar",
+            "email": "ganeshgavhad2@gmail.com"
+        },
+        "WrongFn": {
+            "firstName":"rdon osinski",
+            "lastName":"Stracke",
+            "email":"Helena.Markhotmail.com",
+            "password": "GaneshG@9"
+        },
+        "WrongLn": {
+            "firstName":"Gordon Osinski",
+            "lastName":"t",
+            "email":"Helena.Marks@hotmail.com",
+            "password": "GaneshG@9"
+        },
+        "WrongPass": {
+            "firstName":"Gordon Osinski",
+            "lastName":"t",
+            "email":"Helena.Marks@hotmail.com",
+            "password": "GaneshG9"
+        }
+    }
+}
