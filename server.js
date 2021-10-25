@@ -8,6 +8,9 @@ app.use(express.urlencoded({ extended: true }));
 // parse requests of content-type - application/json
 app.use(express.json());
 
+const connection = require("./config/database.config");
+connection.database();
+
 app.get("/", (req, res) => {
     res.json({ Welcome: "Welcome to the Book Store App !" });
   });
