@@ -41,7 +41,7 @@ class UserController {
         } else {
           return res.status(201).json({
             success: true,
-            message: "Admin Registered successfully",
+            message: "Registration completed successfully",
             data: data,
           });
         }
