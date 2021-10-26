@@ -1,25 +1,25 @@
 const userService = require("../service/user.service");
 const validation = require("../helper/validation");
+//const { admin } = require("../helper/user.helper");
 
 /**
  * @description   : Controller class is use for taking HTTP request from the client or users and gives the response to client through DB
  * @author        : Ganesh
  */
 class UserController {
-
   /**
    * @description Create and save user and sending response to service
    * @method registration to save the user into database
    * @param req,res for service
    */  
-  registration = (req, res) => {
+   registration = (req,role,res) => {
     try {
       const user = {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
         password: req.body.password,
-        role: req.body.role,
+        role: role,
       };
       const isUserValidate = validation.validateSchema.validate(user);
       if (isUserValidate.error) {
@@ -41,7 +41,7 @@ class UserController {
         } else {
           return res.status(201).json({
             success: true,
-            message: "User Registered successfully",
+            message: "Admin Registered successfully",
             data: data,
           });
         }
@@ -51,6 +51,44 @@ class UserController {
         success: false,
         message: "Error while registering",
         data: null,
+      });
+    }
+  };
+
+  userlogin = (req, res) => {
+    try {
+      const userLoginInfo = {
+        email: req.body.email,
+        password: req.body.password
+      };
+
+      const loginValidation = validation.loginSchema.validate(userLoginInfo);
+      if (loginValidation.error) {
+        //logger.error(loginValidation.error);
+        res.status(422).send({
+          success: false,
+          message: loginValidation.error.message
+        });
+      }
+      userService.userLogin(userLoginInfo, (error, token) => {
+        if (error) {
+          return res.status(401).json({
+            success: false,
+            message: "Unable to login. Please enter correct info",
+            error
+          });
+        }
+        return res.status(201).json({
+          success: true,
+          message: "User logged in successfully",
+          token: token
+        });
+      });
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: "Error while Login",
+        data: null
       });
     }
   };

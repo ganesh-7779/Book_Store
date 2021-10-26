@@ -19,18 +19,30 @@
         "password": {
           "type": "string",
           "description": "Password of user."
-        },
-        "role": {
-          "type": "string",
-          "description": "Enter your role"
         }
       },
       "example": {
         "firstName": "Akash",
         "lastName": "Pawar",
         "email": "akashpawar6@gmail.com",
-        "password": "akashG2@7",
-        "role": "User"
+        "password": "akashG2@7"
+      }
+    },
+    "logininfo": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "Email ID of user."
+        },
+        "password": {
+          "type": "string",
+          "description": "Password of user."
+        }
+      },
+      "example": {
+        "email": "akashpawd4@gmail.com",
+        "password": "akashf8@7"
       }
     }
   },
@@ -54,9 +66,43 @@
   "consumes": ["application/json"],
   "produces": ["application/json"],
   "paths": {
-    "/register": {
+    "/admin-register": {
       "post": {
-        "tags": ["Registration"],
+        "tags": ["Admin Registration"],
+        "description": "Create a new admin in the BOOK STORE App",
+        "parameters": [
+          {
+            "name": "Admin Registration",
+            "in": "body",
+            "description": "Admin that we wants to create",
+            "schema": {
+              "$ref": "#/definitions/Registration_info"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "schema": {
+          "$ref": "#/definitions/userInfo"
+        },
+        "responses": {
+          "201": {
+            "description": "Admin Registration successfully"
+          },
+          "409": {
+            "description": "user/email already exist or please enter valid details"
+          },
+          "422": {
+            "description": "Wrong user input"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/user-register": {
+      "post": {
+        "tags": ["User Registration"],
         "description": "Create a new user in the BOOK STORE App",
         "parameters": [
           {
@@ -74,7 +120,7 @@
         },
         "responses": {
           "201": {
-            "description": "User created successfully"
+            "description": "User Registration successfully"
           },
           "409": {
             "description": "user/email already exist or please enter valid details"
@@ -84,6 +130,40 @@
           },
           "500": {
             "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": ["Login"],
+        "description": "Already registered ? Then login using email and password",
+        "parameters": [
+          {
+            "name": "Login",
+            "in": "body",
+            "description": "login here with login info ",
+            "schema": {
+              "$ref": "#/definitions/logininfo"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "schema": {
+          "$ref": "#/definitions/logininfo"
+        },
+        "responses": {
+          "201": {
+            "description": "logged in successfully🤩🤞"
+          },
+          "401": {
+            "description": "Unable to login. Please enter correct login info😒"
+          },
+          "422": {
+            "description": "Wrong user input"
+          },
+          "500": {
+            "description": "Internal server error🌍"
           }
         }
       }

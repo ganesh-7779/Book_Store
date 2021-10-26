@@ -51,5 +51,42 @@
             "email":"Helena.Marks@hotmail.com",
             "password": "GaneshG9"
         }
+    },
+    "userLogin":{
+
+        "loginInfo":{
+            "email": "ganeshgavhad9@gmail.com",
+            "password":"ganeshG@123"
+        },
+        "wrongPassLI":{
+            "email": "ganeshgavhad9@gmail.com",
+            "password": "ganesgG@14"
+        },
+        "wrongEmail":{
+            "email": "ganeshgavhad0@gmail.com",
+            "password": "ganesgY@12"
+        },
+        "wrongEmailER":{
+            "email": "GaneshGavhad0gmail.com",
+            "password": "ganesgY@12"
+        },
+        "wrongPassER":{
+            "email": "ganeshgavhad9@gmail.com",
+            "password": "ganesgG14"
+        },
+        "validEmail":{
+            "email":"vivek.iitd93@gmail.com"
+        },
+        "invalidEmail":{
+            "email":"vivek.iitdgmail.com"
+        },"validDetailss": {
+            "password": "Ganesh@164"
+        },
+        "invalidDetailss": {
+            "password": "c@llw@1996"
+        },
+        "invalidDetails": {
+            "password": "Ganesh@164"
+        }
     }
 }
