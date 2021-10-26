@@ -7,7 +7,6 @@ const validation = require("../helper/validation");
  * @author        : Ganesh
  */
 class UserController {
-
   /**
    * @description Create and save user and sending response to service
    * @method registration to save the user into database
