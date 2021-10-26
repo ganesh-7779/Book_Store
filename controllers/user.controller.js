@@ -62,6 +62,14 @@ class UserController {
         password: req.body.password
       };
 
+      const loginValidation = validation.loginSchema.validate(userLoginInfo);
+      if (loginValidation.error) {
+        //logger.error(loginValidation.error);
+        res.status(422).send({
+          success: false,
+          message: loginValidation.error.message
+        });
+      }
       userService.userLogin(userLoginInfo, (error, token) => {
         if (error) {
           return res.status(401).json({

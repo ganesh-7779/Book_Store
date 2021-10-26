@@ -33,5 +33,24 @@ class Validation {
     googleLogin: Joi.boolean(),
     googleId: Joi.string(),
   });
+  
+  loginSchema = Joi.object({
+    email: Joi.string()
+      .required()
+      .pattern(
+        new RegExp(
+          "^(?:(?!.*?[.]{2})[a-zA-Z0-9](?:[a-zA-Z0-9._+!%-]{1,64}|)|\"[a-zA-Z0-9.+! -]{1,64}\")@[a-zA-Z0-9][a-zA-Z0-9.-]+(.[a-z]{2,}|.[0-9]{1,})$"
+        )
+      ),
+    password: Joi.string()
+      .min(8)
+      .max(20)
+      .pattern(
+        new RegExp(
+          "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"
+        )
+      )
+      .required()
+  });
 }
 module.exports = new Validation();
