@@ -27,6 +27,23 @@
         "email": "akashpawar6@gmail.com",
         "password": "akashG2@7"
       }
+    },
+    "logininfo": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "Email ID of user."
+        },
+        "password": {
+          "type": "string",
+          "description": "Password of user."
+        }
+      },
+      "example": {
+        "email": "akashpawd4@gmail.com",
+        "password": "akashf8@7"
+      }
     }
   },
   "info": {
@@ -113,6 +130,40 @@
           },
           "500": {
             "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": ["Login"],
+        "description": "Already registered ? Then login using email and password",
+        "parameters": [
+          {
+            "name": "Login",
+            "in": "body",
+            "description": "login here with login info ",
+            "schema": {
+              "$ref": "#/definitions/logininfo"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "schema": {
+          "$ref": "#/definitions/logininfo"
+        },
+        "responses": {
+          "201": {
+            "description": "logged in successfully🤩🤞"
+          },
+          "401": {
+            "description": "Unable to login. Please enter correct login info😒"
+          },
+          "422": {
+            "description": "Wrong user input"
+          },
+          "500": {
+            "description": "Internal server error🌍"
           }
         }
       }
