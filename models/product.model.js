@@ -35,7 +35,7 @@ const productSchema = mongoose.Schema({
   },
   date: {
     type: Date,
-    default: Date.now,
+    default: Date.now()
   },
 });
 
@@ -82,5 +82,9 @@ class Model {
       description: booktoUpdate.description,
     },{new: true});
   };
+  getBookById = async(bookId)=>{
+    return await Product.findById(bookId).sort({ date: -1 });
+
+  }
 }
 module.exports = new Model();

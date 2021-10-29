@@ -108,5 +108,28 @@ class Product {
       });
     }
   };
+  getBookById = async (req, res) => {
+    try {
+      const bookId = req.params.Id
+      const data = await productService.getBookById(bookId);
+      if (!data) {
+        return res.status(404).json({
+          message: "Book Not Found",
+          success: false,
+        });
+      } else {
+        return res.status(200).json({
+          message: "Its Your Book",
+          success: true,
+          data: data,
+        });
+      }
+    } catch {
+      return res.status(500).json({
+        message: "Error occured",
+        success: false,
+      });
+    }
+  };
 }
 module.exports = new Product();

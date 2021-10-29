@@ -23,6 +23,9 @@ class ProductService {
   updateBook = async (booktoUpdate)=>{
     return await productModel.updateBook(booktoUpdate)
   }
+  getBookById = async(bookId)=>{
+    return await productModel.getBookById(bookId)
+  }
 
 }
 module.exports= new ProductService()
