@@ -14,5 +14,15 @@ class ProductService {
       }
     });
   };
+  deleteBook = async (bookId)=>{
+    return await productModel.deleteBook(bookId)
+  }
+  getAllBook = async () => {
+    return await productModel.getAllBook()
+  }
+  updateBook = async (booktoUpdate)=>{
+    return await productModel.updateBook(booktoUpdate)
+  }
+
 }
 module.exports= new ProductService()
