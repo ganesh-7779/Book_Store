@@ -131,5 +131,30 @@ class Product {
       });
     }
   };
+  // search book by using name or category
+  searchBook = async(req,res)=>{
+    try{
+    const textToSerch = {name:req.body.nameCantain, category: req.body.catCantain}
+    console.log(textToSerch)
+    const data = await productService.searchBook(textToSerch);
+      if (!data) {
+        return res.status(404).json({
+          message: "Book Not Found with this name or category",
+          success: false,
+        });
+      } else {
+        return res.status(200).json({
+          message: "Its Your Book",
+          success: true,
+          data: data,
+        });
+      }
+    } catch {
+      return res.status(500).json({
+        message: "Error occured",
+        success: false,
+      });
+    }
+  }
 }
 module.exports = new Product();

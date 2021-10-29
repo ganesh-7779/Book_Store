@@ -3,7 +3,7 @@
  * @author        : Ganesh
 ********************************************************************/
 const {registration, userlogin}= require("../controllers/user.controller");
-const {createProduct,getAllBook,deleteBook,updateBook,getBookById} = require("../controllers/product.controller")
+const {createProduct,getAllBook,deleteBook,updateBook,getBookById, searchBook} = require("../controllers/product.controller")
 const {adminProtected,auth} = require("../helper/user.helper");
 
 module.exports = (app) => {  
@@ -23,6 +23,6 @@ module.exports = (app) => {
     //public 
     app.get("/getAllBook", auth,getAllBook);
     app.get("/getBookBy/:Id", auth,getBookById);
-
-
+    //Search book in lab by using name or category
+    app.get("/searchBook",auth,searchBook)
 }
