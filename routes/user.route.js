@@ -24,5 +24,5 @@ module.exports = (app) => {
     app.get("/getAllBook", auth,getAllBook);
     app.get("/getBookBy/:Id", auth,getBookById);
     //Search book in lab by using name or category
-    app.get("/searchBook",auth,searchBook)
+    app.post("/searchBook",auth,searchBook)
 }

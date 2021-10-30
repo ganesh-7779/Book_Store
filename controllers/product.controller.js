@@ -131,7 +131,7 @@ class Product {
       });
     }
   };
-  // search book by using name or category
+  // Search book by using name or category
   searchBook = async(req,res)=>{
     try{
     const textToSerch = req.body.nameNcategory
