@@ -283,6 +283,39 @@
           }
         }
       }
+    },
+    "/getAllBook": {
+      "get": {
+        "tags": ["Get All Book"],
+        "description": "You will get your all Book !!",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Token for vaidation..! Please Enter a string before puting token..!",
+            "schema": {
+              "type": "string",
+              "required": true
+            }
+          }
+        ],
+        "produces": ["application/json"],
+
+        "responses": {
+          "200": {
+            "description": "Its Your All Book 🤞😉!!"
+          },
+          "400": {
+            "description": "Please enter Valid Token🤪"
+          },
+          "404": {
+            "description": "Book not found😒"
+          },
+          "500": {
+            "description": "Some internal error occurred 🌍"
+          }
+        }
+      }
     }
   }
 }
