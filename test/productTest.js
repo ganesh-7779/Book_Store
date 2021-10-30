@@ -148,38 +148,73 @@ chai.use(chaiHttp);
 //         });
 //      });
 //   });
-describe("Get All Book API", () => {
-  it("WhenGiven_InfoCorrect_AllBookShould_ReturnSuccessfully", (done) => {
-    const token = data.Book.validToken.token;
-    chai
-      .request(server)
-      .get("/getAllBook")
-      .set({ authorization: token })
-      .end((error, res) => {
-        res.should.have.status(200);
-        done();
-      });
+// describe("Get All Book API", () => {
+//   it("WhenGiven_InfoCorrect_AllBookShould_ReturnSuccessfully", (done) => {
+//     const token = data.Book.validToken.token;
+//     chai
+//       .request(server)
+//       .get("/getAllBook")
+//       .set({ authorization: token })
+//       .end((error, res) => {
+//         res.should.have.status(200);
+//         done();
+//       });
+//   });
+//   it("WhenGiven_InfoInCorrect_shouldReturn _BookNotFound", (done) => {
+//     const token = data.Book.validToken.token;
+//     chai
+//       .request(server)
+//       .get("/getAllBook")
+//       .set({ authorization: token })
+//       .end((error, res) => {
+//         res.should.have.status(404);
+//         done();
+//       });
+//   });
+//   it("WhenGiven_InfoInCorrect_shouldReturn_invalidToken", (done) => {
+//     const token = data.Book.inValidToken.token;
+//     chai
+//       .request(server)
+//       .get("/getAllBook")
+//       .set({ authorization: token })
+//       .end((error, res) => {
+//         res.should.have.status(400);
+//         done();
+//       });
+//    });
+// });
+describe("Get Book By Id API", () => {
+    it("WhenGiven_InfoCorrect_BookShould_GetSuccessfully", (done) => {
+      const token = data.Book.validToken.token;
+      chai
+        .request(server)
+        .get("/getBookBy/617bc0e2040c1fbd144982c3")
+        .set({ authorization: token })
+        .end((error, res) => {
+          res.should.have.status(200);
+          done();
+        });
+    });
+    it("WhenGiven_InfoInCorrect_shouldReturn _BookNotFound", (done) => {
+      const token = data.Book.validToken.token;
+      chai
+        .request(server)
+        .get("/getBookBy/617bc0e2040c1fbd144982c7")
+        .set({ authorization: token })
+        .end((error, res) => {
+          res.should.have.status(404);
+          done();
+        });
+    });
+    it("WhenGiven_InfoInCorrect_shouldReturn_invalidToken", (done) => {
+      const token = data.Book.inValidToken.token;
+      chai
+        .request(server)
+        .get("/getBookBy/617bc0e2040c1fbd144982c3")
+        .set({ authorization: token })
+        .end((error, res) => {
+          res.should.have.status(400);
+          done();
+        });
+     });
   });
-  it("WhenGiven_InfoInCorrect_shouldReturn _BookNotFound", (done) => {
-    const token = data.Book.validToken.token;
-    chai
-      .request(server)
-      .get("/getAllBook")
-      .set({ authorization: token })
-      .end((error, res) => {
-        res.should.have.status(404);
-        done();
-      });
-  });
-  it("WhenGiven_InfoInCorrect_shouldReturn_invalidToken", (done) => {
-    const token = data.Book.inValidToken.token;
-    chai
-      .request(server)
-      .get("/getAllBook")
-      .set({ authorization: token })
-      .end((error, res) => {
-        res.should.have.status(400);
-        done();
-      });
-  });
-});
