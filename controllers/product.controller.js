@@ -14,7 +14,7 @@ class Product {
       productService.createProduct(product, (err, product) => {
         if (err) {
           return res.status(401).json({
-            message: err.message,
+            message: "failed to create book",
             success: false,
           });
         } else {
@@ -137,7 +137,7 @@ class Product {
     const textToSerch = req.body.nameNcategory
     console.log(textToSerch)
     const data = await productService.searchBook(textToSerch);
-      if (!data) {
+      if (!data&& data==null) {
         return res.status(404).json({
           message: "Book Not Found with this name or category",
           success: false,
