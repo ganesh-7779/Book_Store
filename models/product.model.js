@@ -88,8 +88,8 @@ class Model {
 
   searchBook = async(textToSerch) => {
     console.log(textToSerch)
-    const data = await Product.find({$or:[{name:{$regex :textToSerch.name, $options: 'i' }},{category:{$regex:textToSerch.category }}]});
-   //const data = await Product.find({name:{$regex :nameContain, $options: 'i' }});
+    const data = await Product.find({$or:[{name:{$regex :textToSerch, $options: 'i' }},{category:{$regex:textToSerch , $options: 'i'}}]});
+   //const data = await Product.find({name:{$regex :textToSerch, $options: 'i' }});
    console.log(data)
    return data
 

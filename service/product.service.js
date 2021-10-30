@@ -28,6 +28,7 @@ class ProductService {
   }
   searchBook = async(textToSerch) => {
     return await productModel.searchBook(textToSerch)
+    
   }
 }
 module.exports= new ProductService()

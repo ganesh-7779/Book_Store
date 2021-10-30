@@ -134,7 +134,7 @@ class Product {
   // search book by using name or category
   searchBook = async(req,res)=>{
     try{
-    const textToSerch = {name:req.body.nameCantain, category: req.body.catCantain}
+    const textToSerch = req.body.nameNcategory
     console.log(textToSerch)
     const data = await productService.searchBook(textToSerch);
       if (!data) {
