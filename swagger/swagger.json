@@ -316,6 +316,48 @@
           }
         }
       }
+    },
+    "/getBookBy/{Id}": {
+      "get": {
+        "tags": ["Get Book By ID"],
+        "description": "You will able to Get your Book By Id!!",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Token for vaidation..! Please Enter a string before puting token..!",
+            "schema": {
+              "type": "string",
+              "required": true
+            }
+          },
+          {
+            "in": "path",
+            "name": "Id",
+            "description": "Enter ID of Book to Get",
+            "schema": {
+              "type": "string",
+              "required": true
+            }
+          }
+        ],
+        "produces": ["application/json"],
+
+        "responses": {
+          "200": {
+            "description": "Its Your Book 🤞😉!!"
+          },
+          "400": {
+            "description": "Please enter Valid Token🤪"
+          },
+          "404": {
+            "description": "Book not found😒"
+          },
+          "500": {
+            "description": "Some error occurred 🌍"
+          }
+        }
+      }
     }
   }
 }
