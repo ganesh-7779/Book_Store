@@ -1,92 +1,105 @@
 {
-    "registration": {
-        "user": {
-            "firstName":"Gordon Osinski",
-            "lastName":"Stracke",
-            "email":"ganeshgavhad9@gmail.com",
-            "password": "GaneshG@9"
-        },
-        
-        "withoutEmail":{
-            "firstName": "Akash",
-            "lastName": "Pawar",
-            "password": "akashG@12"
-        },
-        "WrongEmail":{
-            "firstName": "Akash",
-            "lastName": "Pawar",
-            "email": "ganeshgavhad2gmail.com",
-            "password": "akashG@12"
-        },
-        "withoutFn":{
-            "lastName": "Pawar",
-            "email": "ganeshgavhad2@gmail.com",
-            "password": "akashG@12"
-        },
-        "withoutLn":{
-            "firstName": "Akash",
-            "email": "ganeshgavhad2@gmail.com",
-            "password": "akashG@12"
-        },
-        "withoutPass":{
-            "firstName": "Akash",
-            "lastName": "Pawar",
-            "email": "ganeshgavhad2@gmail.com"
-        },
-        "WrongFn": {
-            "firstName":"rdon osinski",
-            "lastName":"Stracke",
-            "email":"Helena.Markhotmail.com",
-            "password": "GaneshG@9"
-        },
-        "WrongLn": {
-            "firstName":"Gordon Osinski",
-            "lastName":"t",
-            "email":"Helena.Marks@hotmail.com",
-            "password": "GaneshG@9"
-        },
-        "WrongPass": {
-            "firstName":"Gordon Osinski",
-            "lastName":"t",
-            "email":"Helena.Marks@hotmail.com",
-            "password": "GaneshG9"
-        }
+  "registration": {
+    "user": {
+      "firstName": "Gordon Osinski",
+      "lastName": "Stracke",
+      "email": "ganeshgavhad9@gmail.com",
+      "password": "GaneshG@9"
     },
-    "userLogin":{
 
-        "loginInfo":{
-            "email": "ganeshgavhad9@gmail.com",
-            "password":"ganeshG@123"
-        },
-        "wrongPassLI":{
-            "email": "ganeshgavhad9@gmail.com",
-            "password": "ganesgG@14"
-        },
-        "wrongEmail":{
-            "email": "ganeshgavhad0@gmail.com",
-            "password": "ganesgY@12"
-        },
-        "wrongEmailER":{
-            "email": "GaneshGavhad0gmail.com",
-            "password": "ganesgY@12"
-        },
-        "wrongPassER":{
-            "email": "ganeshgavhad9@gmail.com",
-            "password": "ganesgG14"
-        },
-        "validEmail":{
-            "email":"vivek.iitd93@gmail.com"
-        },
-        "invalidEmail":{
-            "email":"vivek.iitdgmail.com"
-        },"validDetailss": {
-            "password": "Ganesh@164"
-        },
-        "invalidDetailss": {
-            "password": "c@llw@1996"
-        },
-        "invalidDetails": {
-            "password": "Ganesh@164"
-        }
+    "withoutEmail": {
+      "firstName": "Akash",
+      "lastName": "Pawar",
+      "password": "akashG@12"
+    },
+    "WrongEmail": {
+      "firstName": "Akash",
+      "lastName": "Pawar",
+      "email": "ganeshgavhad2gmail.com",
+      "password": "akashG@12"
+    },
+    "withoutFn": {
+      "lastName": "Pawar",
+      "email": "ganeshgavhad2@gmail.com",
+      "password": "akashG@12"
+    },
+    "withoutLn": {
+      "firstName": "Akash",
+      "email": "ganeshgavhad2@gmail.com",
+      "password": "akashG@12"
+    },
+    "withoutPass": {
+      "firstName": "Akash",
+      "lastName": "Pawar",
+      "email": "ganeshgavhad2@gmail.com"
+    },
+    "WrongFn": {
+      "firstName": "rdon osinski",
+      "lastName": "Stracke",
+      "email": "Helena.Markhotmail.com",
+      "password": "GaneshG@9"
+    },
+    "WrongLn": {
+      "firstName": "Gordon Osinski",
+      "lastName": "t",
+      "email": "Helena.Marks@hotmail.com",
+      "password": "GaneshG@9"
+    },
+    "WrongPass": {
+      "firstName": "Gordon Osinski",
+      "lastName": "t",
+      "email": "Helena.Marks@hotmail.com",
+      "password": "GaneshG9"
     }
+  },
+  "userLogin": {
+    "loginInfo": {
+      "email": "ganeshgavhad9@gmail.com",
+      "password": "ganeshG@123"
+    },
+    "wrongPassLI": {
+      "email": "ganeshgavhad9@gmail.com",
+      "password": "ganesgG@14"
+    },
+    "wrongEmail": {
+      "email": "ganeshgavhad0@gmail.com",
+      "password": "ganesgY@12"
+    },
+    "wrongEmailER": {
+      "email": "GaneshGavhad0gmail.com",
+      "password": "ganesgY@12"
+    },
+    "wrongPassER": {
+      "email": "ganeshgavhad9@gmail.com",
+      "password": "ganesgG14"
+    },
+    "validEmail": {
+      "email": "vivek.iitd93@gmail.com"
+    },
+    "invalidEmail": {
+      "email": "vivek.iitdgmail.com"
+    },
+    "validDetailss": {
+      "password": "Ganesh@164"
+    },
+    "invalidDetailss": {
+      "password": "c@llw@1996"
+    },
+    "invalidDetails": {
+      "password": "Ganesh@164"
+    }
+  },
+  "Book": {
+    "createBook": {
+      "name": "xyz",
+      "author": "bhagat",
+      "category": "biopic",
+      "description": "this book is base on love story",
+      "price": 455
+    },
+    "validToken": {
+       "token": "token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhRm9yVG9rZW4iOnsiaWQiOiI2MTc3ZjhmY2NiZWJkMWVkN2M5YzAxZGQiLCJmaXJzdE5hbWUiOiJHYW5lc2giLCJsYXN0TmFtZSI6IkdhdmhhZCIsImVtYWlsIjoiZ2FuZXNoZ2F2aGFkOUBnbWFpbC5jb20iLCJyb2xlIjoiQWRtaW4ifSwiaWF0IjoxNjM1NDg5MzkyfQ.WWWo-OOZfLsu2fcBWMNVRJpDAHemVz9lj7-gWt5OfD4"
+    },
+    "inValidToken": {"token": "token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhRm9yVG9rZW4iOnsiaWQiOiI2MTc3ZjhmY2NiZWJkMWVkN2M5YzAxZGQiLCJmaXJzdE5hbWUiOiJHYW5l"}
+  }
 }

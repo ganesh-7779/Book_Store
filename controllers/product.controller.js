@@ -14,7 +14,7 @@ class Product {
       productService.createProduct(product, (err, product) => {
         if (err) {
           return res.status(401).json({
-            message: err.message,
+            message: "failed to create book",
             success: false,
           });
         } else {
