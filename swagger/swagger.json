@@ -199,7 +199,8 @@
           }
         }
       }
-    },"/createBook": {
+    },
+    "/createBook": {
       "post": {
         "tags": ["Create Book"],
         "description": "Create Book !!",
@@ -355,6 +356,58 @@
           },
           "500": {
             "description": "Some error occurred 🌍"
+          }
+        }
+      }
+    },
+    "/updateBook/{Id}": {
+      "put": {
+        "tags": ["Update Book"],
+        "description": "Update Book !!",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Token for validation",
+            "schema": {
+              "type": "string",
+              "required": true
+            }
+          },
+          {
+            "name": "Update Book",
+            "in": "body",
+            "description": "Book's body",
+            "schema": {
+              "$ref": "#/definitions/Book"
+            }
+          },
+          {
+            "in": "path",
+            "name": "Id",
+            "description": "Enter ID of Book to Update",
+            "schema": {
+              "type": "string",
+              "required": true
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "schema": {
+          "$ref": "#/definitions/Book"
+        },
+        "responses": {
+          "201": {
+            "description": "Book Updated Successfully🤞😉!!"
+          },
+          "400": {
+            "description": "Please enter Valid Token🤪"
+          },
+          "404": {
+            "description": "Book not found😒"
+          },
+          "500": {
+            "description": "Internal server error🌍"
           }
         }
       }

@@ -95,7 +95,7 @@ class Product {
           success: false,
         });
       } else {
-        return res.status(200).json({
+        return res.status(201).json({
           message: "Book Updated Successfully",
           success: true,
           data: data,
