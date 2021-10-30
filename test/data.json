@@ -100,6 +100,6 @@
     "validToken": {
        "token": "token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhRm9yVG9rZW4iOnsiaWQiOiI2MTc3ZjhmY2NiZWJkMWVkN2M5YzAxZGQiLCJmaXJzdE5hbWUiOiJHYW5lc2giLCJsYXN0TmFtZSI6IkdhdmhhZCIsImVtYWlsIjoiZ2FuZXNoZ2F2aGFkOUBnbWFpbC5jb20iLCJyb2xlIjoiQWRtaW4ifSwiaWF0IjoxNjM1NDg5MzkyfQ.WWWo-OOZfLsu2fcBWMNVRJpDAHemVz9lj7-gWt5OfD4"
     },
-    "inValidToken": {"token": "token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhRm9yVG9rZW4iOnsiaWQiOiI2MTc3ZjhmY2NiZWJkMWVkN2M5YzAxZGQiLCJmaXJzdE5hbWUiOiJHYW5l"}
+    "inValidToken": {"token": "token iaWQiOiI2MTc3ZjhmY2NiZWJkMWVkN2M5YzAxZGQiLCJmaXJzdE5hbWUiOiJHYW5l"}
   }
 }
