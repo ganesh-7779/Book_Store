@@ -44,129 +44,427 @@
         "email": "akashpawd4@gmail.com",
         "password": "akashf8@7"
       }
-    }
-  },
-  "info": {
-    "version": "1.0.0",
-    "title": "Book Store App",
-    "description": "Simple book store app which allow admin to perform CRUD and customers to buy product.",
-    "license": {
-      "name": "ISC License",
-      "url": "https://opensource.org/licenses/ISC"
-    }
-  },
-  "host": "localhost:8000",
-  "tags": [
-    {
-      "name": "Book Store",
-      "description": "API for book store App"
-    }
-  ],
-  "schemes": ["http"],
-  "consumes": ["application/json"],
-  "produces": ["application/json"],
-  "paths": {
-    "/admin-register": {
-      "post": {
-        "tags": ["Admin Registration"],
-        "description": "Create a new admin in the BOOK STORE App",
-        "parameters": [
-          {
-            "name": "Admin Registration",
-            "in": "body",
-            "description": "Admin that we wants to create",
-            "schema": {
-              "$ref": "#/definitions/Registration_info"
-            }
-          }
-        ],
-        "produces": ["application/json"],
-        "schema": {
-          "$ref": "#/definitions/userInfo"
+    },
+    "Book": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "name of book"
         },
-        "responses": {
-          "201": {
-            "description": "Admin Registration successfully"
-          },
-          "409": {
-            "description": "user/email already exist or please enter valid details"
-          },
-          "422": {
-            "description": "Wrong user input"
-          },
-          "500": {
-            "description": "Internal server error"
-          }
+        "description": {
+          "type": "string",
+          "description": "description of book"
+        },
+        "author": {
+          "type": "string",
+          "description": "book author name"
+        },
+        "category": {
+          "type": "string",
+          "description": "category of book"
+        },
+        "price": {
+          "type": "Number",
+          "description": "Price of book"
         }
+      },
+      "example": {
+        "name": " name",
+        "category": "category",
+        "description": "description",
+        "author": "author",
+        "price": "45"
       }
     },
-    "/user-register": {
-      "post": {
-        "tags": ["User Registration"],
-        "description": "Create a new user in the BOOK STORE App",
-        "parameters": [
-          {
-            "name": "User Registration",
-            "in": "body",
-            "description": "User that we wants to create",
-            "schema": {
-              "$ref": "#/definitions/Registration_info"
-            }
-          }
-        ],
-        "produces": ["application/json"],
-        "schema": {
-          "$ref": "#/definitions/userInfo"
-        },
-        "responses": {
-          "201": {
-            "description": "User Registration successfully"
-          },
-          "409": {
-            "description": "user/email already exist or please enter valid details"
-          },
-          "422": {
-            "description": "Wrong user input"
-          },
-          "500": {
-            "description": "Internal server error"
-          }
+    "searchBook": {
+      "type": "object",
+      "properties": {
+        "nameNcategory": {
+          "type": "string",
+          "description": "Enter category or name of book"
         }
+      },
+      "example": {
+        "nameNcategory": "story"
+      }
+    }
+  },
+    "info": {
+      "version": "1.0.0",
+      "title": "Book Store App",
+      "description": "Simple book store app which allow admin to perform CRUD and customers to buy product.",
+      "license": {
+        "name": "ISC License",
+        "url": "https://opensource.org/licenses/ISC"
       }
     },
-    "/login": {
-      "post": {
-        "tags": ["Login"],
-        "description": "Already registered ? Then login using email and password",
-        "parameters": [
-          {
-            "name": "Login",
-            "in": "body",
-            "description": "login here with login info ",
-            "schema": {
-              "$ref": "#/definitions/logininfo"
+    "host": "localhost:8000",
+    "tags": [
+      {
+        "name": "Book Store",
+        "description": "API for book store App"
+      }
+    ],
+    "schemes": ["http"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "paths": {
+      "/admin-register": {
+        "post": {
+          "tags": ["Admin Registration"],
+          "description": "Create a new admin in the BOOK STORE App",
+          "parameters": [
+            {
+              "name": "Admin Registration",
+              "in": "body",
+              "description": "Admin that we wants to create",
+              "schema": {
+                "$ref": "#/definitions/Registration_info"
+              }
+            }
+          ],
+          "produces": ["application/json"],
+          "schema": {
+            "$ref": "#/definitions/Registration_info"
+          },
+          "responses": {
+            "201": {
+              "description": "Admin Registration successfully"
+            },
+            "409": {
+              "description": "user/email already exist or please enter valid details"
+            },
+            "422": {
+              "description": "Wrong user input"
+            },
+            "500": {
+              "description": "Internal server error"
             }
           }
-        ],
-        "produces": ["application/json"],
-        "schema": {
-          "$ref": "#/definitions/logininfo"
-        },
-        "responses": {
-          "201": {
-            "description": "logged in successfully🤩🤞"
+        }
+      },
+      "/user-register": {
+        "post": {
+          "tags": ["User Registration"],
+          "description": "Create a new user in the BOOK STORE App",
+          "parameters": [
+            {
+              "name": "User Registration",
+              "in": "body",
+              "description": "User that we wants to create",
+              "schema": {
+                "$ref": "#/definitions/Registration_info"
+              }
+            }
+          ],
+          "produces": ["application/json"],
+          "schema": {
+            "$ref": "#/definitions/Registration_info"
           },
-          "401": {
-            "description": "Unable to login. Please enter correct login info😒"
+          "responses": {
+            "201": {
+              "description": "User Registration successfully"
+            },
+            "409": {
+              "description": "user/email already exist or please enter valid details"
+            },
+            "422": {
+              "description": "Wrong user input"
+            },
+            "500": {
+              "description": "Internal server error"
+            }
+          }
+        }
+      },
+      "/login": {
+        "post": {
+          "tags": ["Login"],
+          "description": "Already registered ? Then login using email and password",
+          "parameters": [
+            {
+              "name": "Login",
+              "in": "body",
+              "description": "login here with login info ",
+              "schema": {
+                "$ref": "#/definitions/logininfo"
+              }
+            }
+          ],
+          "produces": ["application/json"],
+          "schema": {
+            "$ref": "#/definitions/logininfo"
           },
-          "422": {
-            "description": "Wrong user input"
+          "responses": {
+            "201": {
+              "description": "logged in successfully🤩🤞"
+            },
+            "401": {
+              "description": "Unable to login. Please enter correct login info😒"
+            },
+            "422": {
+              "description": "Wrong user input"
+            },
+            "500": {
+              "description": "Internal server error🌍"
+            }
+          }
+        }
+      },
+      "/createBook": {
+        "post": {
+          "tags": ["Create Book"],
+          "description": "Create Book !!",
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Token for validation",
+              "schema": {
+                "type": "string",
+                "required": true
+              }
+            },
+            {
+              "name": "create Book",
+              "in": "body",
+              "description": "Book's body",
+              "schema": {
+                "$ref": "#/definitions/Book"
+              }
+            }
+          ],
+          "produces": ["application/json"],
+          "schema": {
+            "$ref": "#/definitions/Book"
           },
-          "500": {
-            "description": "Internal server error🌍"
+          "responses": {
+            "201": {
+              "description": "Book Created Succesfully 🤞😉!!"
+            },
+            "400": {
+              "description": "Please enter Valid Token🤪"
+            },
+            "401": {
+              "description": "failed to post Product😒"
+            },
+            "500": {
+              "description": "Internal server error🌍"
+            }
+          }
+        }
+      },
+      "/deleteBook/{Id}": {
+        "delete": {
+          "tags": ["Delete Book By ID"],
+          "description": "You will able to delete your Book !!",
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Token for vaidation..! Please Enter a string before puting token..!",
+              "schema": {
+                "type": "string",
+                "required": true
+              }
+            },
+            {
+              "in": "path",
+              "name": "Id",
+              "description": "Enter ID of Book to delete",
+              "schema": {
+                "type": "string",
+                "required": true
+              }
+            }
+          ],
+          "produces": ["application/json"],
+
+          "responses": {
+            "200": {
+              "description": "Book successfully Deleted 🤞😉!!"
+            },
+            "400": {
+              "description": "Please enter Valid Token🤪"
+            },
+            "404": {
+              "description": "Book not found🤪"
+            },
+            "500": {
+              "description": "Some error occurred 🌍"
+            }
+          }
+        }
+      },
+      "/getAllBook": {
+        "get": {
+          "tags": ["Get All Book"],
+          "description": "You will get your all Book !!",
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Token for vaidation..! Please Enter a string before puting token..!",
+              "schema": {
+                "type": "string",
+                "required": true
+              }
+            }
+          ],
+          "produces": ["application/json"],
+
+          "responses": {
+            "200": {
+              "description": "Its Your All Book 🤞😉!!"
+            },
+            "400": {
+              "description": "Please enter Valid Token🤪"
+            },
+            "404": {
+              "description": "Book not found😒"
+            },
+            "500": {
+              "description": "Some internal error occurred 🌍"
+            }
+          }
+        }
+      },
+      "/getBookBy/{Id}": {
+        "get": {
+          "tags": ["Get Book By ID"],
+          "description": "You will able to Get your Book By Id!!",
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Token for vaidation..! Please Enter a string before puting token..!",
+              "schema": {
+                "type": "string",
+                "required": true
+              }
+            },
+            {
+              "in": "path",
+              "name": "Id",
+              "description": "Enter ID of Book to Get",
+              "schema": {
+                "type": "string",
+                "required": true
+              }
+            }
+          ],
+          "produces": ["application/json"],
+
+          "responses": {
+            "200": {
+              "description": "Its Your Book 🤞😉!!"
+            },
+            "400": {
+              "description": "Please enter Valid Token🤪"
+            },
+            "404": {
+              "description": "Book not found😒"
+            },
+            "500": {
+              "description": "Some error occurred 🌍"
+            }
+          }
+        }
+      },
+      "/updateBook/{Id}": {
+        "put": {
+          "tags": ["Update Book"],
+          "description": "Update Book !!",
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Token for validation",
+              "schema": {
+                "type": "string",
+                "required": true
+              }
+            },
+            {
+              "name": "Update Book",
+              "in": "body",
+              "description": "Book's body",
+              "schema": {
+                "$ref": "#/definitions/Book"
+              }
+            },
+            {
+              "in": "path",
+              "name": "Id",
+              "description": "Enter ID of Book to Update",
+              "schema": {
+                "type": "string",
+                "required": true
+              }
+            }
+          ],
+          "produces": ["application/json"],
+          "schema": {
+            "$ref": "#/definitions/Book"
+          },
+          "responses": {
+            "201": {
+              "description": "Book Updated Successfully🤞😉!!"
+            },
+            "400": {
+              "description": "Please enter Valid Token🤪"
+            },
+            "404": {
+              "description": "Book not found😒"
+            },
+            "500": {
+              "description": "Internal server error🌍"
+            }
+          }
+        }
+      },
+      "/searchBook": {
+        "post": {
+          "tags": ["Search Book"],
+          "description": "You will get your Searched Book !!",
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Token for vaidation..! Please Enter a string before puting token..!",
+              "schema": {
+                "type": "string",
+                "required": true
+              }
+            },
+            {
+              "name": "Search Book",
+              "in": "body",
+              "description": "Book's body",
+              "schema": {
+                "$ref": "#/definitions/searchBook"
+              }
+            }
+          ],
+          "produces": ["application/json"],
+
+          "responses": {
+            "200": {
+              "description": "Its Your All Book 🤞😉!!"
+            },
+            "400": {
+              "description": "Please enter Valid Token🤪"
+            },
+            "404": {
+              "description": "Book not found😒"
+            },
+            "500": {
+              "description": "Some internal error occurred 🌍"
+            }
           }
         }
       }
     }
   }
-}
+
