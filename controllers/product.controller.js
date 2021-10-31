@@ -69,7 +69,6 @@ class Product {
           success: false,
         });
       } else {
-        //setRedis.setData("getAllBook", 60, JSON.stringify(data))
         client.setex("getAllBook", 60, JSON.stringify(data));
         return res.status(200).json({
           message: "Its Your All Book",

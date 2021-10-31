@@ -4,6 +4,7 @@
 ********************************************************************/
 const {registration, userlogin}= require("../controllers/user.controller");
 const {createProduct,getAllBook,deleteBook,updateBook,getBookById, searchBook} = require("../controllers/product.controller")
+const{addToCart} =require("../controllers/cart.controller")
 const {adminProtected,auth} = require("../helper/user.helper");
 const{redis, redisById} = require("../helper/redis")
 
@@ -26,4 +27,7 @@ module.exports = (app) => {
     app.get("/getBookBy/:Id", auth,redisById,getBookById);
     //Search book in lab by using name or category
     app.post("/searchBook",auth,searchBook)
+
+   // add to cart
+   app.post("/addToCart/:Id", auth,addToCart)
 }
