@@ -5,6 +5,7 @@
 const {registration, userlogin}= require("../controllers/user.controller");
 const {createProduct,getAllBook,deleteBook,updateBook,getBookById, searchBook} = require("../controllers/product.controller")
 const {adminProtected,auth} = require("../helper/user.helper");
+const{redis, redisById} = require("../helper/redis")
 
 module.exports = (app) => {  
     // Create a new registration
@@ -19,10 +20,10 @@ module.exports = (app) => {
     // admin Protected 
     app.post("/createBook", auth, adminProtected, createProduct);
     app.delete("/deleteBook/:Id", auth, adminProtected, deleteBook);
-    app.put("/updateBook/:Id", auth, adminProtected, updateBook);
+    app.put("/updateBook/:Id", auth, adminProtected, redis, updateBook);
     //public 
-    app.get("/getAllBook", auth,getAllBook);
-    app.get("/getBookBy/:Id", auth,getBookById);
+    app.get("/getAllBook", auth,redis,getAllBook);
+    app.get("/getBookBy/:Id", auth,redisById,getBookById);
     //Search book in lab by using name or category
     app.post("/searchBook",auth,searchBook)
 }

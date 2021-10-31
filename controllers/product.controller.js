@@ -1,4 +1,8 @@
 const productService = require("../service/product.service");
+const redis = require("redis")
+const client = redis.createClient();
+const setRedis =require ("../helper/redis")
+
 class Product {
   createProduct = (req, res) => {
     try {
@@ -65,6 +69,8 @@ class Product {
           success: false,
         });
       } else {
+        //setRedis.setData("getAllBook", 60, JSON.stringify(data))
+        client.setex("getAllBook", 60, JSON.stringify(data));
         return res.status(200).json({
           message: "Its Your All Book",
           success: true,
@@ -95,6 +101,7 @@ class Product {
           success: false,
         });
       } else {
+        setRedis.clearCache();
         return res.status(201).json({
           message: "Book Updated Successfully",
           success: true,
@@ -118,6 +125,7 @@ class Product {
           success: false,
         });
       } else {
+        client.setex(bookId, 60, JSON.stringify(data));
         return res.status(200).json({
           message: "Its Your Book",
           success: true,
