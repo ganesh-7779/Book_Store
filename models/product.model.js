@@ -83,7 +83,9 @@ class Model {
     },{new: true});
   };
   getBookById = async(bookId)=>{
-    return await Product.findById(bookId).sort({ date: -1 });
+    const data = await Product.findById(bookId).sort({ date: -1 });
+    console.log(data)
+    return data
   }
 
   searchBook = async(textToSerch) => {
