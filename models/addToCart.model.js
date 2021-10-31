@@ -7,7 +7,7 @@ const addtocart = mongoose.Schema({
     ref: "Registration",
   },
   bookId: {
-    type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }]
+    type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
   },
   addedDate: {
     type: Date,
@@ -17,29 +17,30 @@ const addtocart = mongoose.Schema({
 
 const cart = mongoose.model("cart", addtocart);
 class CartModel {
-  addTocart = async (bookId, userId)=> {
-    const addToCartData = await cart.findOne({userId: userId})
+  addTocart = async (bookId, userId) => {
+    const addToCartData = await cart.findOne({ userId: userId });
     if (addToCartData !== null) {
-      
       return addToCartData;
     } else {
       const addToCartData = new cart({
         userId: userId,
-        bookId: bookId
-    });
-    const datauser = async () => {
-      await addToCartData.save();
-    };
-    datauser();
-    return null
-   // return addToCartData 
-   }
+        bookId: bookId,
+      });
+      const datauser = async () => {
+        await addToCartData.save();
+      };
+      datauser();
+      return null;
+      // return addToCartData
+    }
+  };
+  addItemTocart = async (bookId, userId) => {
+    const data = await cart.findOneAndUpdate(
+      { userId: userId },
+      { $push: { bookId: bookId } },
+      { new: true }
+    );
+    return data;
+  };
 }
-addItemTocart = async (bookId,userId)=> {
-  const data = await cart.findOneAndUpdate( { userId: userId},{ $push: { bookId: bookId } },
-    { new: true }
-  );
-  return data
-}
-}
-module.exports= new CartModel
+module.exports = new CartModel();

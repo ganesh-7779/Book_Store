@@ -6,18 +6,13 @@ class cartService {
     if (checkToCart == null) {
       return false;
     } else {
-        console.log(JSON.stringify(checkToCart.bookId[0]))
-      for (let index = 0; index <= checkToCart.bookId.length; index++) {
-        if (
-          JSON.stringify(checkToCart.bookId[index]) === JSON.stringify(bookId)
-        ) {
+      for (let i = 0; i < checkToCart.bookId.length; i++) {
+        if (JSON.stringify(checkToCart.bookId[i]) === JSON.stringify(bookId)) {
           return true;
-        } else {
-          const addItemTocart = await cartModel.addItemTocart(bookId, userId);
-          return addItemTocart;
         }
       }
     }
+    return await cartModel.addItemTocart(bookId, userId);
   };
 }
 module.exports = new cartService();

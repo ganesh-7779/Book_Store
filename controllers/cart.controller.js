@@ -14,11 +14,17 @@ class CartController {
       });
     } else {
       const isExist = await cartService.addToCart(bookId, userId);
-      console.log(isExist)
-      if (isExist) {
+      console.log(isExist);
+      if (isExist === true) {
         return res.status(201).json({
           message: "Book Already Added To Cart",
           success: false,
+        });
+      } else if (isExist === false) {
+        return res.status(201).json({
+          message: "Book SuccessFully Added To Cart",
+          success: true,
+          data: isExist,
         });
       } else {
         return res.status(201).json({
