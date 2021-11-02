@@ -56,7 +56,7 @@ let ItemSchema = new Schema(
     quantity: {
       type: Number,
       required: true,
-      //min: [1, "Quantity can not be less then 1."],
+      // min: [1, "Quantity can not be less then 1."],
     },
     price: {
       type: Number,
@@ -108,10 +108,23 @@ class cartModel {
       console.log("Index", indexFound);
       //check if product exist,just add the previous quantity with the new quantity and update the total price
       if (indexFound != -1) {
-        cartdata.items[indexFound].quantity = cartdata.items[indexFound].quantity + quantity;
-        cartdata.items[indexFound].total = cartdata.items[indexFound].quantity * productDetails.price;
+        const qnt = (cartdata.items[indexFound].quantity =cartdata.items[indexFound].quantity + quantity);
+        cartdata.items[indexFound].total =cartdata.items[indexFound].quantity * productDetails.price;
         cartdata.items[indexFound].price = productDetails.price;
-        cartdata.subTotal = cartdata.items.map((item) => item.total).reduce((acc, curr) => acc + curr);
+        cartdata.subTotal = cartdata.items
+          .map((item) => item.total)
+          .reduce((acc, curr) => acc + curr);
+        if (qnt <= 0) {
+          cartdata.items.pop(indexFound);
+
+          if (cartdata.items.length < 0) {
+            for (let i = 0; i < cartdata.items.length; i++) {
+              cartdata.subTotal += cartdata.items.total[i];
+            }
+          } else {
+            cartdata.subTotal = cartdata.items.total;
+          }
+        }
       }
       //Check if Quantity is Greater than 0 then add item to items Array
       else if (quantity > 0) {
@@ -124,16 +137,15 @@ class cartModel {
         cartdata.subTotal = cartdata.items
           .map((item) => item.total)
           .reduce((acc, curr) => acc + curr);
-      } else if(quantity < 0){
-        cartdata.pop(item)
       }
-    
-      //if quantity of price is 0 throw the error
+      //if quantity is less than 0
       else {
         return null;
       }
       const data = await cartdata.save();
       return data;
+    } else if (quantity < 0) {
+      return null;
     }
     //if there is no user with a cart then it creates a new cart and then adds the item to the cart that has been created
     else {

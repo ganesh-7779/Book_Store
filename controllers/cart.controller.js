@@ -39,13 +39,8 @@ class CartController {
   // };
   addToCart = async (req, res) => {
     const { userId, itemId } = req.body;
-    let data = null;
     const quantity = Number.parseInt(req.body.quantity);
-    //const productDetails = await product.getBookById(itemId)//findById(itemId);
     let cart = await cartService.addToCartSer(userId,itemId,quantity);
-    //let cart = await cartModel.addTocart(userId,itemId,quantity);
-
-    //await Cart.findOne({ userId: userId});
     if (cart) {
       res.status(200).send({
         message: "Add to Cart successfully!",
@@ -53,7 +48,7 @@ class CartController {
       });
     }
     return res.status(400).json({
-      message: "Invalid request",
+      message: "Invalid request,Please enter valid quantity",
     });
   };
 }
