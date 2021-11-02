@@ -44,6 +44,7 @@
 //   };
 // }
 // module.exports = new CartModel();
+const { object } = require("joi");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
@@ -66,6 +67,14 @@ let ItemSchema = new Schema(
       type: Number,
       required: true,
     },
+    // customToJSON : function() {
+    //   return _.omit(this, ['_id','timestamps'])
+
+      // var obj = this.toObject();
+      // delete obj._id;
+      // delete obj.timestamps
+      // return obj;
+    //}
   },
   {
     timestamps: true,
@@ -92,6 +101,8 @@ const CartSchema = new Schema(
     timestamps: true,
   }
 );
+
+ 
 const Cart = mongoose.model("cart", CartSchema);
 
 //module.exports = mongoose.model("cart", CartSchema);
@@ -99,7 +110,7 @@ const product = require("../models/product.model");
 
 class cartModel {
   addTocart = async (userId, itemId, quantity) => {
-    const cartdata = await Cart.findOne({ userId: userId });
+    const cartdata = await Cart.findOne({ userId: userId },{createdAt:0},{updatedAt:0 });
     const productDetails = await product.getBookById(itemId); //findById(itemId);
 
     //return cartdata
@@ -163,7 +174,9 @@ class cartModel {
       };
       let cart = new Cart(cartData);
       let data = await cart.save();
-      return data;
+      console.log("data for new crated cart  "+ data)
+      //const newData = Object.entries(data)
+      return data
     }
   };
 }

@@ -2,6 +2,7 @@ const cartService = require("../service/cart.service");
 const bookModel = require("../models/product.model");
 const product = require("../models/product.model");
 const cartModel = require("../models/addToCart.model")
+const logger = require("../logger/logger")
 class CartController {
   // addToCart = async (req, res) => {
   //   const userId = req.user.dataForToken.id,
@@ -42,14 +43,17 @@ class CartController {
     const quantity = Number.parseInt(req.body.quantity);
     let cart = await cartService.addToCartSer(userId,itemId,quantity);
     if (cart) {
+      logger.info("Add to Cart successfully")
       res.status(200).send({
         message: "Add to Cart successfully!",
         data: cart,
       });
-    }
+    }else{
+    logger.info("Invalid request,Please enter valid quantity")
     return res.status(400).json({
       message: "Invalid request,Please enter valid quantity",
     });
   };
+}
 }
 module.exports = new CartController();

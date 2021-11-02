@@ -2,6 +2,7 @@ const productService = require("../service/product.service");
 const redis = require("redis")
 const client = redis.createClient();
 const setRedis =require ("../helper/redis")
+const logger = require("../logger/logger")
 
 class Product {
   createProduct = (req, res) => {
@@ -17,11 +18,13 @@ class Product {
       // console.log(product)
       productService.createProduct(product, (err, product) => {
         if (err) {
+          logger.error(err)
           return res.status(401).json({
             message: "failed to create book",
             success: false,
           });
         } else {
+          logger.info("Successfully inserted Product")
           return res.status(201).send({
             message: "Successfully inserted Product",
             success: true,
@@ -43,11 +46,13 @@ class Product {
       //console.log(bookId);
       const data = await productService.deleteBook(bookId);
       if (!data) {
+        logger.info("Book Not Found")
         return res.status(404).json({
           message: "Book Not Found",
           success: false,
         });
       } else {
+        logger.info("Book Deleted succesfully")
         return res.status(200).json({
           message: "Book Deleted succesfully",
           success: true,
@@ -64,6 +69,7 @@ class Product {
     try {
       const data = await productService.getAllBook();
       if (!data) {
+        logger.info("Book Not Found")
         return res.status(404).json({
           message: "Book Not Found",
           success: false,
@@ -95,6 +101,7 @@ class Product {
       }
       const data = await productService.updateBook(booktoUpdate);
       if (!data) {
+        logger.info("Book Not Found")
         return res.status(404).json({
           message: "Book Not Found",
           success: false,
@@ -119,6 +126,7 @@ class Product {
       const bookId = req.params.Id
       const data = await productService.getBookById(bookId);
       if (!data) {
+        logger.info("Book Not Found")
         return res.status(404).json({
           message: "Book Not Found",
           success: false,
@@ -145,6 +153,7 @@ class Product {
     console.log(textToSerch)
     const data = await productService.searchBook(textToSerch);
       if (!data&& data==null) {
+        logger.info("Book Not Found")
         return res.status(404).json({
           message: "Book Not Found with this name or category",
           success: false,

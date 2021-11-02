@@ -87,6 +87,13 @@ class Model {
     console.log(data)
     return data
   }
+//   getBookById = async(bookId)=>{
+//     const data = await Product.findById(bookId,{_id:0});
+// //,{_id: 0}
+//     //const data = await Product.find({bookId},{createdAt: 0})
+//     console.log(data+" product data")
+//     return data
+  
 
   searchBook = async(textToSerch) => {
     console.log(textToSerch)
