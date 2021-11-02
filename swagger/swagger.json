@@ -77,6 +77,28 @@
         "price": "45"
       }
     },
+    "cart": {
+      "type": "object",
+      "properties": {
+        "itemId": {
+          "type": "string",
+          "description": "Id of book to Add in Cart"
+        },
+        "userId": {
+          "type": "string",
+          "description": "User To find out The Cart"
+        },
+        "quantity": {
+          "type": "Number",
+          "description": "Quantity Of book To added in Cart"
+        }
+      },
+      "example": {
+        "itemId": "98",
+        "userId": "87",
+        "quantity": "2"
+      }
+    },
     "searchBook": {
       "type": "object",
       "properties": {
@@ -461,6 +483,49 @@
             },
             "500": {
               "description": "Some internal error occurred 🌍"
+            }
+          }
+        }
+      },
+      "/addToCart": {
+        "post": {
+          "tags": ["Add Book To Cart"],
+          "description": "Add To Cart !",
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Token for validation",
+              "schema": {
+                "type": "string",
+                "required": true
+              }
+            },
+            {
+              "name": "Add To Book",
+              "in": "body",
+              "description": "BookId body",
+              "schema": {
+                "$ref": "#/definitions/cart"
+              }
+            }
+          ],
+          "produces": ["application/json"],
+          "schema": {
+            "$ref": "#/definitions/cart"
+          },
+          "responses": {
+            "200": {
+              "description": "Add to Cart successfully!🤞😉!!"
+            },
+            "400": {
+              "description": "Please enter Valid Token🤪"
+            },
+            "401": {
+              "description": "Invalid request,Please enter valid info 😒"
+            },
+            "500": {
+              "description": "Internal server error🌍"
             }
           }
         }
