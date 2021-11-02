@@ -29,5 +29,8 @@ module.exports = (app) => {
     app.post("/searchBook",auth,searchBook)
 
    // add to cart
-   app.post("/addToCart/:Id", auth,addToCart)
+   //app.post("/addToCart/:Id", auth,addToCart)
+   app.post("/addToCart", auth,addToCart)
+   
+
 }
