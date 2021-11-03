@@ -47,5 +47,22 @@ class CartController {
       });
     }
   };
+  viewCartItem= async(req,res)=> {
+    const userId = req.user.dataForToken.id
+    let cartItem = await cartService.viewCartItem(userId);
+    if(cartItem){
+      res.status(200).send({
+        message: "Its your Cart Item",
+        data: cartItem,
+        success: true,
+      });
+    }else{
+      res.status(404).send({
+        message: "Cart Not Found",
+        data: cartItem,
+        success: false
+      });
+    }
+  }
 }
 module.exports = new CartController();
