@@ -22,7 +22,8 @@ let ItemSchema = new Schema(
     },
   },
   {
-    timestamps: true,
+    
+    //timestamps: true,
   }
 );
 const item = mongoose.model("item", ItemSchema);
@@ -40,9 +41,13 @@ const CartSchema = new Schema(
       default: 0,
       type: Number,
     },
+    date: {
+      type: Date,
+      default: Date.now()
+    },
   },
   {
-    timestamps: true,
+    //timestamps: true,
   }
 );
 
@@ -147,8 +152,13 @@ class cartModel {
     }
   };
   viewCartItem = async(userId)=> {
-    const cartdata = await Cart.findOne({ userId: userId },{_id:0,userId:0,createdAt:0,updatedAt:0,__v:0})
-     console.log(cartdata)
+    //const cartdata = await Cart.findOne({ userId: userId },{_id:0,userId:0,createdAt:0,updatedAt:0,__v:0})
+    let cartdata = await Cart.findOne({ userId: userId },{_id : 0,userId:0,__v:0}).populate({
+      path: 'items.productId',
+      select:
+        'name author description price category -_id'
+    })
+    console.log(cartdata)
     return cartdata
   }
 }
