@@ -27,8 +27,7 @@ class ProductService {
     return await productModel.getBookById(bookId)
   }
   searchBook = async(textToSerch) => {
-    return await productModel.searchBook(textToSerch)
-    
+    return await productModel.searchBook(textToSerch) 
   }
 }
 module.exports= new ProductService()

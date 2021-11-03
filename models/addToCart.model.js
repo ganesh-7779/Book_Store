@@ -1,49 +1,4 @@
-// const mongoose = require("mongoose");
 
-// const addtocart = mongoose.Schema({
-//   userId: {
-//     type: mongoose.Schema.Types.ObjectId,
-//     required: true,
-//     ref: "Registration",
-//   },
-//   bookId: {
-//     type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
-//   },
-//   addedDate: {
-//     type: Date,
-//     default: Date.now(),
-//   },
-// });
-
-// const cart = mongoose.model("cart", addtocart);
-// class CartModel {
-//   addTocart = async (bookId, userId) => {
-//     const addToCartData = await cart.findOne({ userId: userId });
-//     if (addToCartData !== null) {
-//       return addToCartData;
-//     } else {
-//       const addToCartData = new cart({
-//         userId: userId,
-//         bookId: bookId,
-//       });
-//       const datauser = async () => {
-//         await addToCartData.save();
-//       };
-//       datauser();
-//       return null;
-//       // return addToCartData
-//     }
-//   };
-//   addItemTocart = async (bookId, userId) => {
-//     const data = await cart.findOneAndUpdate(
-//       { userId: userId },
-//       { $push: { bookId: bookId } },
-//       { new: true }
-//     );
-//     return data;
-//   };
-// }
-// module.exports = new CartModel();
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
@@ -56,7 +11,6 @@ let ItemSchema = new Schema(
     quantity: {
       type: Number,
       required: true,
-      // min: [1, "Quantity can not be less then 1."],
     },
     price: {
       type: Number,
@@ -71,7 +25,6 @@ let ItemSchema = new Schema(
     timestamps: true,
   }
 );
-//module.exports = mongoose.model("item", ItemSchema);
 const item = mongoose.model("item", ItemSchema);
 
 const CartSchema = new Schema(
@@ -92,37 +45,39 @@ const CartSchema = new Schema(
     timestamps: true,
   }
 );
+
 const Cart = mongoose.model("cart", CartSchema);
 
-//module.exports = mongoose.model("cart", CartSchema);
 const product = require("../models/product.model");
 
 class cartModel {
   addTocart = async (userId, itemId, quantity) => {
     const cartdata = await Cart.findOne({ userId: userId });
-    const productDetails = await product.getBookById(itemId); //findById(itemId);
+    const productDetails = await product.getBookById(itemId); 
 
-    //return cartdata
     if (cartdata) {
       let indexFound = cartdata.items.findIndex((p) => p.productId == itemId);
       console.log("Index", indexFound);
       //check if product exist,just add the previous quantity with the new quantity and update the total price
       if (indexFound != -1) {
-        const qnt = (cartdata.items[indexFound].quantity =cartdata.items[indexFound].quantity + quantity);
-        cartdata.items[indexFound].total =cartdata.items[indexFound].quantity * productDetails.price;
+        const qnt = (cartdata.items[indexFound].quantity =
+        cartdata.items[indexFound].quantity + quantity);
+        console.log(qnt);
+        cartdata.items[indexFound].total =
+        cartdata.items[indexFound].quantity * productDetails.price;
         cartdata.items[indexFound].price = productDetails.price;
         cartdata.subTotal = cartdata.items
           .map((item) => item.total)
           .reduce((acc, curr) => acc + curr);
         if (qnt <= 0) {
-          cartdata.items.pop(indexFound);
-
-          if (cartdata.items.length < 0) {
-            for (let i = 0; i < cartdata.items.length; i++) {
-              cartdata.subTotal += cartdata.items.total[i];
+          await cartdata.items.splice(indexFound, 1);
+          const cartdata2 = await cartdata.save();
+          if (cartdata2.items.length < 0) {
+            for (let i = 0; i < cartdata2.items.length; i++) {
+              cartdata2.subTotal += cartdata2.items.total[i];
             }
           } else {
-            cartdata.subTotal = cartdata.items.total;
+            cartdata2.subTotal = cartdata2.items.total;
           }
         }
       }
@@ -164,6 +119,31 @@ class cartModel {
       let cart = new Cart(cartData);
       let data = await cart.save();
       return data;
+    }
+  };
+  removeFromcart = async (userId, bookId) => {
+    const cartdata = await Cart.findOne({ userId: userId });
+    if (cartdata) {
+      let indexFound = cartdata.items.findIndex((p) => p.productId == bookId);
+      if (indexFound != -1) {
+        await cartdata.items.splice(indexFound, 1);
+        const cartData2 = await cartdata.save();
+        if (cartData2.items.length > 0) {
+          cartData2.subTotal = cartData2.items
+            .map((item) => item.total)
+            .reduce((acc, curr) => acc + curr);
+          await cartData2.save();
+          return cartData2;
+        } else if (cartData2.items.length == 0) {
+          cartData2.subTotal = cartData2.items.total;
+          await cartData2.save();
+          return cartData2;
+        }
+      } else {
+        return null;
+      }
+    } else {
+      return false;
     }
   };
 }

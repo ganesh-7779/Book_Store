@@ -95,7 +95,7 @@ describe("Update Book API", () => {
       };
       chai
         .request(server)
-        .put("/updateBook/617cb499c8ab42b592227f52")
+        .put("/updateBook/617cb499c8ab42b592227f59")
         .set({ authorization: token })
         .send(updateBook)
         .end((error, res) => {
@@ -242,6 +242,34 @@ describe("Search Book API", () => {
         .send(textToSerch)
         .end((error, res) => {
           res.should.have.status(404);
+          done();
+        });
+    });
+  });
+  describe("Add To Cart API", () => {
+    it("WhenGiven_InfoCorrect_Should_Return_ItemAddedSuccessfully", (done) => {
+      const token = data.Book.validToken.token;
+      const bookToAdd = {"userId":"6177f8fccbebd1ed7c9c01dd","itemId": "617d81757620b0415dcd3c5f", "quantity":"5"}
+      chai
+        .request(server)
+        .post("/addToCart")
+        .set({ authorization: token })
+        .send(bookToAdd)
+        .end((error, res) => {
+          res.should.have.status(200);
+          done();
+        });
+    });
+    it("WhenGiven_InfoInCorrect_shouldReturn_invalidInfo", (done) => {
+      const token = data.Book.validToken.token;
+      const bookToAdd = {"userId":"6177f8fccbebd1ed7c9c01dd","itemId": "617d81757620b0415dcd3c5f", "quantity":"-20"}
+      chai
+        .request(server)
+        .post("/addToCart")
+        .set({ authorization: token })
+        .send(bookToAdd)
+        .end((error, res) => {
+          res.should.have.status(400);
           done();
         });
     });
