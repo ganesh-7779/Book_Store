@@ -8,5 +8,9 @@ class cartService {
     const data = await cartModel.removeFromcart(userId,bookId);
     return data
   }
+  viewCartItem = async(userId)=> {
+    const data = await cartModel.viewCartItem(userId);
+    return data
+  }
 }
 module.exports = new cartService();

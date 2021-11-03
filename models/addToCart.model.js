@@ -146,6 +146,10 @@ class cartModel {
       return false;
     }
   };
+  viewCartItem = async(userId)=> {
+    const cartdata = await Cart.findOne({ userId: userId },{_id:0,userId:0,createdAt:0,updatedAt:0,__v:0})
+     console.log(cartdata)
+    return cartdata
+  }
 }
-
 module.exports = new cartModel();
