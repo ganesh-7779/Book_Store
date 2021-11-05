@@ -529,6 +529,47 @@
             }
           }
         }
+      },"/removeFromCart/{Id}": {
+        "delete": {
+          "tags": ["Remove Book By ID"],
+          "description": "Remove Book By ID From Cart!!",
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Token for vaidation..! Please Enter a string before puting token..!",
+              "schema": {
+                "type": "string",
+                "required": true
+              }
+            },
+            {
+              "in": "path",
+              "name": "Id",
+              "description": "Enter ID of Book to Remove From Cart",
+              "schema": {
+                "type": "string",
+                "required": true
+              }
+            }
+          ],
+          "produces": ["application/json"],
+
+          "responses": {
+            "200": {
+              "description": "Book Removed successfully, Now Available Book In Cart!🤞😉!!"
+            },
+            "400": {
+              "description": "Please enter Valid Token🤪"
+            },
+            "404": {
+              "description": "Book not found or Cart Not Found😒"
+            },
+            "500": {
+              "description": "Some error occurred 🌍"
+            }
+          }
+        }
       }
     }
   }

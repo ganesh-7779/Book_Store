@@ -32,7 +32,7 @@ class CartController {
     if (cart) {
       logger.info("Remove From Cart successfully");
       res.status(200).send({
-        message: "Remove From  Cart successfully!",
+        message: "Book Removed successfully, Now Available Book In Cart!",
         data: cart,
         success: true,
 
