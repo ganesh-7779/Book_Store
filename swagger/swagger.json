@@ -529,7 +529,8 @@
             }
           }
         }
-      },"/removeFromCart/{Id}": {
+      },
+      "/removeFromCart/{Id}": {
         "delete": {
           "tags": ["Remove Book By ID"],
           "description": "Remove Book By ID From Cart!!",
@@ -564,6 +565,39 @@
             },
             "404": {
               "description": "Book not found or Cart Not Found😒"
+            },
+            "500": {
+              "description": "Some error occurred 🌍"
+            }
+          }
+        }
+      },
+      "/viewCartItem": {
+        "get": {
+          "tags": ["View All Book in Cart"],
+          "description": "user able to see all book of cart",
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Token for vaidation..! Please Enter a string before puting token..!",
+              "schema": {
+                "type": "string",
+                "required": true
+              }
+            }
+          ],
+          "produces": ["application/json"],
+
+          "responses": {
+            "200": {
+              "description": "Its your Cart Item!🤞😉!!"
+            },
+            "400": {
+              "description": "Please enter Valid Token🤪"
+            },
+            "404": {
+              "description": "Cart Not Found😒"
             },
             "500": {
               "description": "Some error occurred 🌍"
