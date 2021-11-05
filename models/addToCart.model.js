@@ -1,5 +1,7 @@
 
+const { boolean } = require("joi");
 const mongoose = require("mongoose");
+const { remove } = require("winston");
 const Schema = mongoose.Schema;
 
 let ItemSchema = new Schema(
@@ -20,6 +22,10 @@ let ItemSchema = new Schema(
       type: Number,
       required: true,
     },
+    isPurchase: {
+      type: Boolean,
+      require:true
+    }
   },
   {
     
@@ -158,8 +164,24 @@ class cartModel {
       select:
         'name author description price category -_id'
     })
-    console.log(cartdata)
-    return cartdata
+    return cartdata 
+};
+buyBookFromCart = async(buyBook)=>{
+  const cartdata = await Cart.findOne({ userId: buyBook.userId });
+  if(cartdata){
+    const indexFound = cartdata.items.findIndex((p)=> p.productId == buyBook.bookId)
+    if(indexFound != -1){
+      cartdata.items[indexFound].isPurchase= buyBook.isPurchase;
+       await cartdata.save();
+       return cartdata
+    }else{
+      return null
+    }
+  }else{
+    return false
   }
+
+}
+  
 }
 module.exports = new cartModel();

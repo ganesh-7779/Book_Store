@@ -4,7 +4,7 @@
 ********************************************************************/
 const {registration, userlogin}= require("../controllers/user.controller");
 const {createProduct,getAllBook,deleteBook,updateBook,getBookById, searchBook} = require("../controllers/product.controller")
-const{addToCart,removeFromCart,viewCartItem} =require("../controllers/cart.controller")
+const{addToCart,removeFromCart,viewCartItem,buyBookFromCart} =require("../controllers/cart.controller")
 const {adminProtected,auth} = require("../helper/user.helper");
 const{redis, redisById} = require("../helper/redis")
 
@@ -30,9 +30,10 @@ module.exports = (app) => {
 
    // add to cart
    //app.post("/addToCart/:Id", auth,addToCart)
-   app.post("/addToCart", auth,addToCart)
-   app.delete("/removeFromCart", auth, removeFromCart)
+   app.post("/addToCart/:Id", auth,addToCart)
+   app.delete("/removeFromCart/:Id", auth, removeFromCart)
    app.get("/viewCartItem", auth, viewCartItem)
+   app.put("/buyBookFromCart/:Id",auth,buyBookFromCart)
    
 
 }
