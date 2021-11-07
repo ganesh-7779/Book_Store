@@ -532,7 +532,7 @@
       },
       "/removeFromCart/{Id}": {
         "delete": {
-          "tags": ["Remove Book By ID"],
+          "tags": ["Remove Book From Cart"],
           "description": "Remove Book By ID From Cart!!",
           "parameters": [
             {
@@ -574,7 +574,7 @@
       },
       "/viewCartItem": {
         "get": {
-          "tags": ["View All Book in Cart"],
+          "tags": ["View All Book From Cart"],
           "description": "user able to see all book of cart",
           "parameters": [
             {
