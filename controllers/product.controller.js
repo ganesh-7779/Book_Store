@@ -100,18 +100,18 @@ class Product {
         price: req.body.price,
       }
       const data = await productService.updateBook(booktoUpdate);
-      if (!data) {
+      if (data) {
+        //setRedis.clearCache();
+        return res.status(200).json({
+          message: "Book Updated Successfully",
+          success: true,
+          data: data,
+        });  
+      } else {
         logger.info("Book Not Found")
         return res.status(404).json({
           message: "Book Not Found",
           success: false,
-        });
-      } else {
-        setRedis.clearCache();
-        return res.status(201).json({
-          message: "Book Updated Successfully",
-          success: true,
-          data: data,
         });
       }
     } catch {
