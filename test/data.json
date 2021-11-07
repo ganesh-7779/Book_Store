@@ -100,7 +100,7 @@
     "validToken": {
        "token": "token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhRm9yVG9rZW4iOnsiaWQiOiI2MTc3ZjhmY2NiZWJkMWVkN2M5YzAxZGQiLCJmaXJzdE5hbWUiOiJHYW5lc2giLCJsYXN0TmFtZSI6IkdhdmhhZCIsImVtYWlsIjoiZ2FuZXNoZ2F2aGFkOUBnbWFpbC5jb20iLCJyb2xlIjoiQWRtaW4ifSwiaWF0IjoxNjM1NDg5MzkyfQ.WWWo-OOZfLsu2fcBWMNVRJpDAHemVz9lj7-gWt5OfD4"
     },
-    "validWithCart":{
+    "validWithoutCart":{
         "token": "token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhRm9yVG9rZW4iOnsiaWQiOiI2MTg2N2EwMTI5M2JjZGQ2MWUxNTI3YjkiLCJmaXJzdE5hbWUiOiJEYXR0YSIsImxhc3ROYW1lIjoiR2F2aGFkIiwiZW1haWwiOiJnYW5lc2hnYXZoYWQ4QGdtYWlsLmNvbSIsInJvbGUiOiJBZG1pbiJ9LCJpYXQiOjE2MzYyMDMwMzJ9.4h7w_DMVZPl0XpPK7GrzuG7hQryn9Kq_KDOa_Rhnc6k"
     },
     "inValidToken": {"token": "token iaWQiOiI2MTc3ZjhmY2NiZWJkMWVkN2M5YzAxZGQiLCJmaXJzdE5hbWUiOiJHYW5l"}

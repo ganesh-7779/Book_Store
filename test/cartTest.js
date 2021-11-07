@@ -58,3 +58,49 @@ describe("Add To Cart API", () => {
       });
   });
 });
+describe("Remove Book From Cart API", () => {
+    it("WhenGiven_InfoCorrect_BookShould_DeleteSuccessfully", (done) => {
+      const token = data.Book.validToken.token;
+      chai
+        .request(server)
+        .delete("/removeFromCart/617d923fef07c103c5689d8b")
+        .set({ authorization: token })
+        .end((error, res) => {
+          res.should.have.status(200);
+          done();
+        });
+    });
+    it("WhenGiven_InfoInCorrect_shouldReturn _BookNotFound", (done) => {
+      const token = data.Book.validToken.token;
+      chai
+        .request(server)
+        .delete("/removeFromCart/6182e5b897c1c5d11ebbcbab")
+        .set({ authorization: token })
+        .end((error, res) => {
+          res.should.have.status(404);
+        });
+        done();
+     });
+     it("WhenGiven_InfoInCorrect_shouldReturn _CartNotFound", (done) => {
+        const token = data.Book.validWithoutCart.token;
+        chai
+          .request(server)
+          .delete("/removeFromCart/6182e5b897c1c5d11ebbcbab")
+          .set({ authorization: token })
+          .end((error, res) => {
+            res.should.have.status(404);
+          });
+          done();
+       });
+       it("WhenGiven_InfoInCorrect_shouldReturn_invalidToken", (done) => {
+        const token = data.Book.inValidToken.token;
+        chai
+          .request(server)
+          .delete("/removeFromCart/6182e5b897c1c5d11ebbcbaa")
+          .set({ authorization: token })
+          .end((error, res) => {
+            res.should.have.status(400);
+            done();
+          });
+      });
+  });
