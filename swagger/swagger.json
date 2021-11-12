@@ -110,8 +110,26 @@
       "example": {
         "nameNcategory": "story"
       }
-    }
-  },
+    },
+    "priceLimit": {
+      "type": "object",
+      "properties": {
+        "min": {
+          "type": "string",
+          "description": "Enter Minimun Price"
+        },
+        "max": {
+          "type": "string",
+          "description": "Enter maximum Price"
+        }
+        }
+      },
+      "example": {
+        "min": "40",
+        "max":"90"
+      }
+    },
+  
     "info": {
       "version": "1.0.0",
       "title": "Book Store App",
@@ -650,6 +668,47 @@
               "schema": {
                 "type": "string",
                 "required": true
+              }
+            }
+          ],
+          "produces": ["application/json"],
+
+          "responses": {
+            "200": {
+              "description": "Its Your All Book With High To Low Price 🤞😉!!"
+            },
+            "400": {
+              "description": "Please enter Valid Token🤪"
+            },
+            "404": {
+              "description": "Book not found😒"
+            },
+            "500": {
+              "description": "Some internal error occurred 🌍"
+            }
+          }
+        }
+      },
+      "/minAndMaxPrice": {
+        "post": {
+          "tags": ["Get All Book With High To Low Price"],
+          "description": "You will get your all Book With High to Low Price !!",
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Token for vaidation..! Please Enter a string before puting token..!",
+              "schema": {
+                "type": "string",
+                "required": true
+              }
+            },
+            {
+              "name": "Price Limit",
+              "in": "body",
+              "description": "Min And Max Price",
+              "schema": {
+                "$ref": "#/definitions/priceLimit"
               }
             }
           ],
