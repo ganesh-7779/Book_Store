@@ -35,5 +35,8 @@ class ProductService {
   highToLowPrice = async()=>{
     return await productModel.highToLowPrice()
   }
+  minAndMaxPrice  = async(price)=>{
+    return await productModel.minAndMaxPrice(price)
+  }
 }
 module.exports= new ProductService()

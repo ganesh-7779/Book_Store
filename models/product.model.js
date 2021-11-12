@@ -109,5 +109,12 @@ class Model {
   highToLowPrice = async()=> {
     return await Product.find().sort({ price: -1 })
   }
+  minAndMaxPrice= async(price)=> {
+    console.log(price.max)
+    console.log(price.min)
+    const data = await Product.find({price: {$gt: price.min, $lt: price.max}})
+    console.log(data)
+    return data;
+  }
 }
 module.exports = new Model();
