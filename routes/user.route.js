@@ -3,7 +3,7 @@
  * @author        : Ganesh
 ********************************************************************/
 const {registration, userlogin}= require("../controllers/user.controller");
-const {createProduct,getAllBook,deleteBook,updateBook,getBookById, searchBook,lowTOHighPrice} = require("../controllers/product.controller")
+const {createProduct,getAllBook,deleteBook,updateBook,getBookById, searchBook,lowTOHighPrice,highToLowPrice} = require("../controllers/product.controller")
 const{addToCart,removeFromCart,viewCartItem,buyBookFromCart} =require("../controllers/cart.controller")
 const {adminProtected,auth} = require("../helper/user.helper");
 const{redis, redisById} = require("../helper/redis")
@@ -28,6 +28,8 @@ module.exports = (app) => {
     //Search book in lab by using name or category
     app.post("/searchBook",auth,searchBook)
     app.get("/lowTOHighPrice",auth,lowTOHighPrice)
+    app.get("/highToLowPrice",auth,highToLowPrice)
+
    // add to cart
    //app.post("/addToCart/:Id", auth,addToCart)
    app.post("/addToCart/:Id", auth,addToCart)
