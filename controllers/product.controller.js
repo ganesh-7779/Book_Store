@@ -140,6 +140,7 @@ class Product {
   minAndMaxPrice= async(req,res)=> {
     try {
       const price = { min: req.body.min, max: req.body.max}
+      console.log(req.body)
       const data = await productService.minAndMaxPrice(price);
       if (!data) {
         logger.info("Book Not Found")
