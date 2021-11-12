@@ -637,6 +637,39 @@
             }
           }
         }
+      },
+      "/highToLowPrice": {
+        "get": {
+          "tags": ["Get All Book With High To Low Price"],
+          "description": "You will get your all Book With High to Low Price !!",
+          "parameters": [
+            {
+              "in": "header",
+              "name": "Authorization",
+              "description": "Token for vaidation..! Please Enter a string before puting token..!",
+              "schema": {
+                "type": "string",
+                "required": true
+              }
+            }
+          ],
+          "produces": ["application/json"],
+
+          "responses": {
+            "200": {
+              "description": "Its Your All Book With High To Low Price 🤞😉!!"
+            },
+            "400": {
+              "description": "Please enter Valid Token🤪"
+            },
+            "404": {
+              "description": "Book not found😒"
+            },
+            "500": {
+              "description": "Some internal error occurred 🌍"
+            }
+          }
+        }
       }
     }
   }
