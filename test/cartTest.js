@@ -104,3 +104,38 @@ describe("Remove Book From Cart API", () => {
           });
       });
   });
+describe("View All Cart Book API", () => {
+  it("WhenGiven_InfoCorrect_Should_returnAllCartBook", (done) => {
+    const token = data.Book.validToken.token;
+    chai
+      .request(server)
+      .get("/viewCartItem")
+      .set({ authorization: token })
+      .end((error, res) => {
+        res.should.have.status(200);
+        done();
+      });
+  });
+   it("WhenGiven_InfoInCorrect_shouldReturn _CartNotFound", (done) => {
+      const token = data.Book.validWithoutCart.token;
+      chai
+        .request(server)
+        .get("/viewCartItem")
+        .set({ authorization: token })
+        .end((error, res) => {
+          res.should.have.status(404);
+        });
+        done();
+     });
+     it("WhenGiven_InfoInCorrect_shouldReturn_invalidToken", (done) => {
+      const token = data.Book.inValidToken.token;
+      chai
+        .request(server)
+        .get("/viewCartItem")
+        .set({ authorization: token })
+        .end((error, res) => {
+          res.should.have.status(400);
+          done();
+        });
+    });
+});

@@ -1,7 +1,4 @@
 const cartService = require("../service/cart.service");
-const bookModel = require("../models/product.model");
-const product = require("../models/product.model");
-const cartModel = require("../models/addToCart.model");
 const logger = require("../logger/logger");
 class CartController {
 
@@ -25,7 +22,6 @@ class CartController {
     }
   };
   removeFromCart = async (req, res) => {
-    //const { userId, bookId } = req.body;
     const userId = req.user.dataForToken.id
     const bookId = req.params.Id
     let cart = await cartService.removeToCart(userId, bookId);
