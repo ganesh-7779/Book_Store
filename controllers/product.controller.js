@@ -75,7 +75,7 @@ class Product {
           success: false,
         });
       } else {
-        client.setex("getAllBook", 60, JSON.stringify(data));
+        //client.setex("getAllBook", 60, JSON.stringify(data));
         return res.status(200).json({
           message: "Its Your All Book",
           success: true,
@@ -140,6 +140,7 @@ class Product {
   minAndMaxPrice= async(req,res)=> {
     try {
       const price = { min: req.body.min, max: req.body.max}
+      console.log(req.body)
       const data = await productService.minAndMaxPrice(price);
       if (!data) {
         logger.info("Book Not Found")

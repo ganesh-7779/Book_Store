@@ -11,10 +11,10 @@ const{redis, redisById} = require("../helper/redis")
 module.exports = (app) => {  
     // Create a new registration
     app.post("/admin-register", async (req,res)=>{
-         await registration(req, "Admin", res);
+         await registration(req,"Admin", res);
     });
     app.post("/user-register", async (req,res)=>{
-        await registration(req, "User", res);
+        await registration(req,"User", res);
    });
     app.post("/login",userlogin);
 
@@ -38,6 +38,4 @@ module.exports = (app) => {
    app.delete("/removeFromCart/:Id", auth, removeFromCart)
    app.get("/viewCartItem", auth, viewCartItem)
    app.put("/buyBookFromCart/:Id",auth,buyBookFromCart)
-   
-
 }
