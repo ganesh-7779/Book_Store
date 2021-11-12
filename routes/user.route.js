@@ -29,7 +29,7 @@ module.exports = (app) => {
     app.post("/searchBook",auth,searchBook)
     app.get("/lowTOHighPrice",auth,lowTOHighPrice)
     app.get("/highToLowPrice",auth,highToLowPrice)
-    app.get("/minAndMaxPrice",auth,minAndMaxPrice)
+    app.post("/minAndMaxPrice",auth,minAndMaxPrice)
 
 
    // add to cart
