@@ -71,7 +71,7 @@ class Model {
   };
 
   getAllBook = async () => {
-    return await Product.find().sort({ date: -1 });
+    return await Product.find({},{_id:0,date:0,adminId:0,__v:0})
   };
   updateBook = async (booktoUpdate) => {
     return await Product.findByIdAndUpdate(booktoUpdate.Id, {
@@ -104,15 +104,15 @@ class Model {
 
   }
   lowTOHighPrice = async()=> {
-    return await Product.find().sort({ price: 1 })
+    return await Product.find({},{_id:0,date:0,adminId:0,__v:0}).sort({ price: 1 })
   }
   highToLowPrice = async()=> {
-    return await Product.find().sort({ price: -1 })
+    return await Product.find({},{_id:0,date:0,adminId:0,__v:0}).sort({ price: -1 })
   }
   minAndMaxPrice= async(price)=> {
     console.log(price.max)
     console.log(price.min)
-    const data = await Product.find({price: {$gt: price.min, $lt: price.max}})
+    const data = await Product.find({price: {$gt: price.min, $lt: price.max}},{_id:0,date:0,adminId:0,__v:0})
     console.log(data)
     return data;
   }
