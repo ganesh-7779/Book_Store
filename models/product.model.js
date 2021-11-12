@@ -103,5 +103,11 @@ class Model {
    return data
 
   }
+  lowTOHighPrice = async()=> {
+    return await Product.find().sort({ price: 1 })
+  }
+  highToLowPrice = async()=> {
+    return await Product.find().sort({ price: -1 })
+  }
 }
 module.exports = new Model();

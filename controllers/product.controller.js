@@ -89,6 +89,30 @@ class Product {
       });
     }
   };
+  lowTOHighPrice = async(req,res)=> {
+    try {
+      const data = await productService.lowTOHighPrice();
+      if (!data) {
+        logger.info("Book Not Found")
+        return res.status(404).json({
+          message: "Book Not Found",
+          success: false,
+        });
+      } else {
+       // client.setex("getAllBook", 60, JSON.stringify(data));
+        return res.status(200).json({
+          message: "Its Your All Book With Low To High Price",
+          success: true,
+          data: data,
+        });
+      }
+    } catch {
+      return res.status(500).json({
+        message: "Error occured",
+        success: false,
+      });
+    }
+  }
   updateBook = async (req, res) => {
     try {
       const booktoUpdate ={

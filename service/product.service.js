@@ -29,5 +29,8 @@ class ProductService {
   searchBook = async(textToSerch) => {
     return await productModel.searchBook(textToSerch) 
   }
+  lowTOHighPrice = async()=>{
+    return await productModel.lowTOHighPrice()
+  }
 }
 module.exports= new ProductService()
