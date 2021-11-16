@@ -1,6 +1,12 @@
+/**
+ * @module:         controller
+ * @file:           user.controller.js
+ * @description:    Taking the request from the client and gives the response.
+ * @author:         Ganesh Gavhad
+ */
+
 const userService = require("../service/user.service");
 const validation = require("../helper/validation");
-//const { admin } = require("../helper/user.helper");
 
 /**
  * @description   : Controller class is use for taking HTTP request from the client or users and gives the response to client through DB
@@ -11,8 +17,8 @@ class UserController {
    * @description Create and save user and sending response to service
    * @method registration to save the user into database
    * @param req,res for service
-   */  
-   registration = (req,role,res) => {
+   */
+  registration = (req, role, res) => {
     try {
       const user = {
         firstName: req.body.firstName,
@@ -27,7 +33,7 @@ class UserController {
         res.status(422).send({
           success: false,
           message: "Wrong user input",
-          data: isUserValidate
+          data: isUserValidate,
         });
       }
 
@@ -54,12 +60,16 @@ class UserController {
       });
     }
   };
-
+  /**
+   * @description:    retrieving login info from user by email and password
+   * @method:         userlogin
+   * @param:          req,res for service
+   */
   userlogin = (req, res) => {
     try {
       const userLoginInfo = {
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
       };
 
       const loginValidation = validation.loginSchema.validate(userLoginInfo);
@@ -67,7 +77,7 @@ class UserController {
         //logger.error(loginValidation.error);
         res.status(422).send({
           success: false,
-          message: loginValidation.error.message
+          message: loginValidation.error.message,
         });
       }
       userService.userLogin(userLoginInfo, (error, token) => {
@@ -75,20 +85,20 @@ class UserController {
           return res.status(401).json({
             success: false,
             message: "Unable to login. Please enter correct info",
-            error
+            error,
           });
         }
         return res.status(201).json({
           success: true,
           message: "User logged in successfully",
-          token: token
+          token: token,
         });
       });
     } catch (error) {
       return res.status(500).json({
         success: false,
         message: "Error while Login",
-        data: null
+        data: null,
       });
     }
   };
