@@ -1,3 +1,10 @@
+/***********************************************************************************
+ * @module       cart Service
+ * @file         user.service.js
+ * @description  cartService class for invoking  the callback method for controller
+ * @author       Ganesh Gavhad
+ * @since        16/11/2021
+ *************************************************************************************/
 const cartModel = require("../models/addToCart.model");
 class cartService {
   addToCartSer = async (userId,itemId,quantity) => {

@@ -1,7 +1,15 @@
+/***********************************************************************************
+ * @module       ProductService
+ * @file         user.service.js
+ * @description  ProductService class for invoking  the callback method for controller
+ * @author       Ganesh Gavhad
+ * @since        16/11/2021
+ *************************************************************************************/
+
 const productModel = require("../models/product.model");
 class ProductService {
     /*
-   * @description : this function is written to send data models
+   * @description : this function is written to send data to models
    * @param       : A valid notes data is expected from service
    * @returns     : if note get reated in DB return data else error
    */

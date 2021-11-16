@@ -3,7 +3,7 @@
  * @file         user.service.js
  * @description  UserService class for invoking  the callback method for controller
  * @author       Ganesh Gavhad
- * @since        17/09/2021
+ * @since        16/11/2021
  *************************************************************************************/
 const userModel = require("../models/registration.model");
 const bcrypt = require("bcrypt");

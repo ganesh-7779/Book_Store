@@ -18,22 +18,22 @@ module.exports = (app) => {
    });
     app.post("/login",userlogin);
 
-    // admin Protected 
+    // admin Protected routes
     app.post("/createBook", auth, adminProtected, createProduct);
     app.delete("/deleteBook/:Id", auth, adminProtected, deleteBook);
     app.put("/updateBook/:Id", auth, adminProtected, redis, updateBook);
-    //public 
+
+    //public routes
     app.get("/getAllBook", auth,redis,getAllBook);
     app.get("/getBookBy/:Id", auth,redisById,getBookById);
+
     //Search book in lab by using name or category
     app.post("/searchBook",auth,searchBook)
     app.get("/lowTOHighPrice",auth,lowTOHighPrice)
     app.get("/highToLowPrice",auth,highToLowPrice)
     app.post("/minAndMaxPrice",auth,minAndMaxPrice)
 
-
    // add to cart
-   //app.post("/addToCart/:Id", auth,addToCart)
    app.post("/addToCart/:Id", auth,addToCart)
    app.delete("/removeFromCart/:Id", auth, removeFromCart)
    app.get("/viewCartItem", auth, viewCartItem)
