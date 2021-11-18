@@ -1,5 +1,5 @@
 #!/bin/sh
-ssh ubuntu@3.108.195.199 <<EOF
+sudo ssh ubuntu@3.108.195.199 <<EOF
     cd ~/Book_Store
     git pull origin main
     curl -o-   https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh    | bash
