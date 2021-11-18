@@ -1,4 +1,4 @@
-/*************************************************************************
+/************************************************************************
  * @purpose         :This file belong to database schema and logical operation
  *                   for data update remove find etc
  * @file            :Product.model.js
@@ -116,7 +116,6 @@ class Model {
     const data = await Product.find({$or:[{name:{$regex :textToSerch, $options: 'i' }},{category:{$regex:textToSerch , $options: 'i'}}]});
    //console.log(data)
    return data
-
   }
   /**
    * @description lowTOHighPrice this function is for sort Book by low to high price range sequence from DB using using find method
