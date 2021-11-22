@@ -1,5 +1,5 @@
 
-#!/bin/sh
+#!/bin/bash
 ssh -tt ubuntu@3.108.195.199 <<EOF
     cd ~/Book_Store
     git config --global --unset http.proxy
