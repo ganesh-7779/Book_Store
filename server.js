@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
 require("./routes/user.route")(app);
 
 app.listen(PORT, () => {
-  console.log(`Server is running at port no ${PORT}`);
+  console.log(`Server is running at port no ${PORT} successfully`);
 });
 
 module.exports = app;
